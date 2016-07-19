@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream.GetField;
+import com.gt22.generator.gui.Gui;
 import com.gt22.generator.templates.ClientServerProxyTemplate;
 import com.gt22.generator.templates.CommonProxyTemplate;
 import com.gt22.generator.templates.CoreTemplate;
@@ -28,24 +29,8 @@ public class Core
 		}
 	}
 
-	private static File generateModDir(BufferedReader in) throws IOException
+	public static void generateMod(String modid, String name, String author, File moddir) throws IOException
 	{
-		System.out.println("Enter mod directory (From current file) (use " + File.separator + " separate directories, and ../ to go up by one directory");
-		String directory = new File(".").getAbsolutePath();
-		directory = directory.substring(0, directory.length() - 2) + File.separator + in.readLine();
-		File modfolder = new File(directory);
-		modfolder.mkdirs();
-		return modfolder;
-	}
-
-	private static void generateMod(BufferedReader in, File moddir) throws IOException
-	{
-		System.out.println("Enter modid of mod");
-		String modid = in.readLine();
-		System.out.println("Enter mod name");
-		String name = in.readLine();
-		System.out.println("Enter mod author name");
-		String author = in.readLine();
 		Packedges pac = generatePackeges(moddir, modid, author);
 		generateCore(pac.core, modid, name, author);
 		generateProxies(pac.proxy, modid, author);
@@ -114,10 +99,7 @@ public class Core
 	{
 		try
 		{
-			BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-			File moddir = generateModDir(in);
-			generateMod(in, moddir);
-			in.close();
+			Gui.init();
 		}
 		catch (Exception e)
 		{
