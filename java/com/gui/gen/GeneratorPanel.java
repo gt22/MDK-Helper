@@ -1,6 +1,7 @@
-package com.gt22.generator.gui;
+package com.gui.gen;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -17,8 +18,9 @@ import com.gt22.generator.core.Core;
 
 public class GeneratorPanel extends JPanel
 {
+	GridBagConstraints gc;
 	JLabel file = new JLabel();
-	public GeneratorPanel(MainFrame instance)
+	public GeneratorPanel(GenFrame instance)
 	{
 		setBorder(BorderFactory.createTitledBorder("Gnerator"));
 		Dimension size = getPreferredSize();
@@ -78,35 +80,23 @@ public class GeneratorPanel extends JPanel
 			}
 		});
 		setLayout(new GridBagLayout());
-		GridBagConstraints gc = new GridBagConstraints();
+		gc = new GridBagConstraints();
 		gc.anchor = GridBagConstraints.WEST;
-		gc.gridx = 0;
-		gc.gridy = 0;
 		gc.weightx = 0.5;
 		gc.weighty = 0.5;
-		add(modid, gc);
-		gc.gridy = 1;
-		add(name, gc);
-		gc.gridy = 2;
-		add(author, gc);
-		gc.gridx = 1;
-		gc.gridy = 0;
-		add(modidtxt, gc);
-		gc.gridy = 1;
-		add(nametxt, gc);
-		gc.gridy = 2;
-		add(authortxt, gc);
-		gc.gridy = 3;
-		add(file, gc);
-		gc.gridx = 0;
-		add(chooseloc, gc);
+		add(modid, 0, 0);
+		add(name, 0, 1);
+		add(author, 0, 2);
+		add(modidtxt, 1, 0);
+		add(nametxt, 1, 1);
+		add(authortxt, 1, 2);
+		add(file, 1, 3);
+		add(chooseloc, 0, 3);
 		gc.weighty = 10;
-		gc.gridy = 4;
-		add(errors, gc);
-		gc.gridy = 5;
+		add(errors, 0, 4);
 		gc.fill = GridBagConstraints.HORIZONTAL;
 		gc.anchor = GridBagConstraints.SOUTH;
-		add(add, gc);
+		add(add, 0, 5);
 	}
 	
 	public void setFile(File file)
@@ -117,5 +107,12 @@ public class GeneratorPanel extends JPanel
 	private static boolean nullorempty(String s)
 	{
 		return s == null || s.equals("");
+	}
+	
+	private void add(Component c, int x, int y)
+	{
+		gc.gridx = x;
+		gc.gridy = y;
+		add(c, gc);
 	}
 }

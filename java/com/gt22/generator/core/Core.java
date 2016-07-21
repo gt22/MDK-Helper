@@ -9,11 +9,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream.GetField;
-import com.gt22.generator.gui.Gui;
 import com.gt22.generator.templates.ClientServerProxyTemplate;
 import com.gt22.generator.templates.CommonProxyTemplate;
 import com.gt22.generator.templates.CoreTemplate;
 import com.gt22.generator.utils.FileUtils;
+import com.gui.Gui;
 
 public class Core
 {
