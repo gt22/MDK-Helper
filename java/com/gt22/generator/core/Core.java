@@ -29,11 +29,11 @@ public class Core
 		}
 	}
 
-	public static void generateMod(String modid, String name, String author, File moddir) throws IOException
+	public static void generateMod(String modid, String name, String author, String mcversion, File moddir) throws IOException
 	{
 		Packedges pac = generatePackeges(moddir, modid, author);
-		generateCore(pac.core, modid, name, author);
-		generateProxies(pac.proxy, modid, author);
+		generateCore(pac.core, modid, name, author, mcversion);
+		generateProxies(pac.proxy, modid, author, mcversion);
 		generateResources(moddir, modid);
 		
 	}
@@ -50,14 +50,14 @@ public class Core
 		return ret;
 	}
 
-	private static void generateCore(File corepackage, String modid, String name, String author) throws IOException
+	private static void generateCore(File corepackage, String modid, String name, String author, String mcversion) throws IOException
 	{
 		try
 		{
 			File core = new File(corepackage, "Core.java");
 			FileUtils.initFile(core);
 			FileOutputStream corew = new FileOutputStream(core);
-			corew.write(new CoreTemplate(modid, author, name).toString().getBytes());
+			corew.write(new CoreTemplate(modid, author, name, mcversion).toString().getBytes());
 			corew.close();
 		}
 		catch (FileNotFoundException e)
@@ -66,22 +66,22 @@ public class Core
 		}
 	}
 
-	private static void generateProxies(File proxypackage, String modid, String author) throws IOException
+	private static void generateProxies(File proxypackage, String modid, String author, String mcversion) throws IOException
 	{
 		File common = new File(proxypackage, "CommonProxy.java");
 		FileUtils.initFile(common);
 		FileOutputStream commonw = new FileOutputStream(common); 
-		commonw.write(new CommonProxyTemplate(author, modid).toString().getBytes());
+		commonw.write(new CommonProxyTemplate(author, modid, mcversion).toString().getBytes());
 		commonw.close();
 		File client = new File(proxypackage, "ClientProxy.java");
 		FileUtils.initFile(client);
 		FileOutputStream clientw = new FileOutputStream(client);
-		clientw.write(new ClientServerProxyTemplate(author, modid, true).toString().getBytes());
+		clientw.write(new ClientServerProxyTemplate(author, modid, mcversion, true).toString().getBytes());
 		clientw.close();
 		File server = new File(proxypackage, "ServerProxy.java");
 		FileUtils.initFile(server);
 		FileOutputStream serverw = new FileOutputStream(server);
-		serverw.write(new ClientServerProxyTemplate(author, modid, false).toString().getBytes());
+		serverw.write(new ClientServerProxyTemplate(author, modid, mcversion, false).toString().getBytes());
 		serverw.close();
 	}
 	

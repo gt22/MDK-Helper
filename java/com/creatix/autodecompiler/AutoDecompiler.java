@@ -28,7 +28,7 @@ public class AutoDecompiler {
 	{
 		forgeVersions = new HashMap<String, String>();
 		//forgeVersions.put("1.6.4", "http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.6.4-9.11.1.1345/forge-1.6.4-9.11.1.1345-src.zip");
-		forgeVersions.put("1.7.2", "http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.7.2-10.12.2.1147/forge-1.7.2-10.12.2.1147-src.zip");
+		//forgeVersions.put("1.7.2", "http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.7.2-10.12.2.1147/forge-1.7.2-10.12.2.1147-src.zip");
 		forgeVersions.put("1.7.10", "http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.7.10-10.13.4.1614-1.7.10/forge-1.7.10-10.13.4.1614-1.7.10-src.zip");
 		forgeVersions.put("1.8", "http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.8-11.14.4.1563/forge-1.8-11.14.4.1563-mdk.zip");
 		forgeVersions.put("1.8.9", "http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.8.9-11.15.1.1902-1.8.9/forge-1.8.9-11.15.1.1902-1.8.9-mdk.zip");

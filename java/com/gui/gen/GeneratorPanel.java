@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -26,10 +27,11 @@ public class GeneratorPanel extends JPanel
 		Dimension size = getPreferredSize();
 		size.width = 500;
 		setPreferredSize(size);
-		JLabel modid = new JLabel("Modid: "), name = new JLabel("Name: "), author = new JLabel("Author: ");
+		JLabel modid = new JLabel("Modid: "), name = new JLabel("Name: "), author = new JLabel("Author: "), mcversion = new JLabel("MC version: ");
 		JTextField modidtxt = new JTextField(10), nametxt = new JTextField(10), authortxt = new JTextField(10);
 		JButton add = new JButton("Generate");
 		JLabel errors = new JLabel();
+		JComboBox<String> versions = new JComboBox<String>(new String[] {"1.7.10", "1.8", "1.8.9", "1.9", "1.9.4", "1.10", "1.10.2"});
 		add.addActionListener(new ActionListener()
 		{
 			
@@ -61,7 +63,7 @@ public class GeneratorPanel extends JPanel
 				{
 					errors.setForeground(new Color(0, 255, 0));
 					errors.setText("Mod generated");
-					Core.generateMod(modidtxt.getText(), nametxt.getText(), authortxt.getText(), instance.getFile());
+					Core.generateMod(modidtxt.getText(), nametxt.getText(), authortxt.getText(), (String) versions.getSelectedItem(), instance.getFile());
 				}
 				catch (IOException e1)
 				{
@@ -90,13 +92,15 @@ public class GeneratorPanel extends JPanel
 		add(modidtxt, 1, 0);
 		add(nametxt, 1, 1);
 		add(authortxt, 1, 2);
-		add(file, 1, 3);
-		add(chooseloc, 0, 3);
+		add(mcversion, 0, 3);
+		add(versions, 1, 3);
+		add(file, 1, 4);
+		add(chooseloc, 0, 4);
 		gc.weighty = 10;
-		add(errors, 0, 4);
+		add(errors, 0, 10);
 		gc.fill = GridBagConstraints.HORIZONTAL;
 		gc.anchor = GridBagConstraints.SOUTH;
-		add(add, 0, 5);
+		add(add, 0, 11);
 	}
 	
 	public void setFile(File file)

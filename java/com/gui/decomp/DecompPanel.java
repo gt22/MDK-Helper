@@ -22,7 +22,7 @@ public class DecompPanel extends JPanel
 {
 	private GridBagConstraints gc;
 	private JLabel file = new JLabel();
-	private String[] versions = new String[] {/*"1.6.4",*/ "1.7.2", "1.7.10", "1.8", "1.8.9", "1.9", "1.9.4", "1.10", "1.10.2"};
+	private String[] versions = new String[] {/*"1.6.4", "1.7.2",*/ "1.7.10", "1.8", "1.8.9", "1.9", "1.9.4", "1.10", "1.10.2"};
 	public DecompPanel(DecompFrame instance)
 	{
 		if(AutoDecompiler.forgeVersions == null)
