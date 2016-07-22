@@ -127,7 +127,7 @@ public class AutoDecompiler {
 		try{
 			File destDir = new File(work_dir.getAbsolutePath());
 	        if (!destDir.exists()) {
-	            destDir.mkdir();
+	            destDir.mkdirs();
 	        }
 	        ZipInputStream zipIn = new ZipInputStream(new FileInputStream(getZipFile()));
 	        ZipEntry entry = zipIn.getNextEntry();
