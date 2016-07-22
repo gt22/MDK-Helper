@@ -12,6 +12,8 @@ import java.io.ObjectInputStream.GetField;
 import com.gt22.generator.templates.ClientServerProxyTemplate;
 import com.gt22.generator.templates.CommonProxyTemplate;
 import com.gt22.generator.templates.CoreTemplate;
+import com.gt22.generator.templates.ItemBlockRegistryTemplate;
+import com.gt22.generator.templates.TileRegistryTemplate;
 import com.gt22.generator.utils.FileUtils;
 import com.gui.Gui;
 
@@ -21,11 +23,12 @@ public class Core
 	{
 		File core;
 		File proxy;
-
+		File reg;
 		public void init()
 		{
 			core.mkdirs();
 			proxy.mkdirs();
+			reg.mkdirs();
 		}
 	}
 
@@ -35,6 +38,7 @@ public class Core
 		generateCore(pac.core, modid, name, author, mcversion);
 		generateProxies(pac.proxy, modid, author, mcversion);
 		generateResources(moddir, modid);
+		generateRegistry(pac.reg, modid, author, mcversion);
 		
 	}
 
@@ -45,25 +49,19 @@ public class Core
 		centralpackage.mkdirs();
 		Packedges ret = new Packedges();
 		ret.core = new File(centralpackage, "core" + sep);
-		ret.proxy = new File(centralpackage, "proxy");
+		ret.proxy = new File(centralpackage, "proxy" + sep);
+		ret.reg = new File(centralpackage, "registry" + sep);
 		ret.init();
 		return ret;
 	}
 
 	private static void generateCore(File corepackage, String modid, String name, String author, String mcversion) throws IOException
 	{
-		try
-		{
 			File core = new File(corepackage, "Core.java");
 			FileUtils.initFile(core);
 			FileOutputStream corew = new FileOutputStream(core);
 			corew.write(new CoreTemplate(modid, author, name, mcversion).toString().getBytes());
 			corew.close();
-		}
-		catch (FileNotFoundException e)
-		{
-			e.printStackTrace();
-		}
 	}
 
 	private static void generateProxies(File proxypackage, String modid, String author, String mcversion) throws IOException
@@ -95,16 +93,28 @@ public class Core
 		lang.mkdir();
 	}
 	
+	private static void generateRegistry(File regpackege, String modid, String author, String mcversion) throws IOException
+	{
+			File item = new File(regpackege, "ItemRegistry.java");
+			FileUtils.initFile(item);
+			FileOutputStream itemw = new FileOutputStream(item);
+			itemw.write(new ItemBlockRegistryTemplate(modid, author, mcversion, true).toString().getBytes());
+			itemw.close();
+			File block = new File(regpackege, "BlockRegistry.java");
+			FileUtils.initFile(item);
+			FileOutputStream blockw = new FileOutputStream(block);
+			blockw.write(new ItemBlockRegistryTemplate(modid, author, mcversion, false).toString().getBytes());
+			blockw.close();
+			File tile = new File(regpackege, "TileRegistry.java");
+			FileUtils.initFile(item);
+			FileOutputStream tilew = new FileOutputStream(tile);
+			tilew.write(new TileRegistryTemplate(modid, author, mcversion).toString().getBytes());
+			tilew.close();
+	}
+	
 	public static void main(String[] args)
 	{
-		try
-		{
 			Gui.init();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
 	}
 
 }

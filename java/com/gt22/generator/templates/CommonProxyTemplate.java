@@ -17,6 +17,9 @@ public class CommonProxyTemplate
 		String sep  = System.getProperty("line.separator");
 		return "package com." + author + "." + modid + ".proxy;" + sep
 			+ sep 
+			+ "import com." + author + "." + modid + ".registry.ItemRegistry;" + sep
+			+ "import com." + author + "." + modid + ".registry.BlockRegistry;" + sep
+			+ "import com." + author + "." + modid + ".registry.TileRegistry;" + sep
 			+ "import " + importmod + "common.event.FMLInitializationEvent;" + sep
 			+ "import " + importmod + "common.event.FMLPostInitializationEvent;" + sep
 			+ "import " + importmod + "common.event.FMLPreInitializationEvent;" + sep
@@ -25,7 +28,9 @@ public class CommonProxyTemplate
 			+ "{" + sep
 			+ "\tpublic void preInit(FMLPreInitializationEvent e)" + sep
 			+ "\t{" + sep
-			+ sep
+			+ "\t\tItemRegistry.init()" + sep
+			+ "\t\tBolckRegistry.init()" + sep
+			+ "\t\tTileRegistry.init()" + sep
 			+ "\t}" + sep
 			+ sep
 			+ "\tpublic void init(FMLInitializationEvent e)" + sep
