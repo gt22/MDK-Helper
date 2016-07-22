@@ -15,7 +15,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import com.gt22.generator.core.Core;
+import com.gt22.generator.core.Writer;
 
 public class GeneratorPanel extends JPanel
 {
@@ -63,7 +63,7 @@ public class GeneratorPanel extends JPanel
 				{
 					errors.setForeground(new Color(0, 255, 0));
 					errors.setText("Mod generated");
-					Core.generateMod(modidtxt.getText(), nametxt.getText(), authortxt.getText(), (String) versions.getSelectedItem(), instance.getFile());
+					Writer.generateMod(modidtxt.getText(), nametxt.getText(), authortxt.getText(), (String) versions.getSelectedItem(), instance.getFile());
 				}
 				catch (IOException e1)
 				{
