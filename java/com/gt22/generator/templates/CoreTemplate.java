@@ -34,32 +34,32 @@ public class CoreTemplate
 		+ "@Mod(modid = Core.modid, name = Core.modid, version = Core.version)" + sep
 		+ "public class Core" + sep
 		+ "{" + sep
-		+ "public static final int majorversion = 1, minorversion = 0, mcversion = " + generateVersion(mcversion) +", bugfixversion = 0;" + sep
-		+ "public static final String modid = \""+ modid + "\", name = \"" + name + "\", version = majorversion + \".\" + minorversion + \".\" + mcversion + \".\" + bugfixversion;" + sep
+		+ "\tpublic static final int majorversion = 1, minorversion = 0, mcversion = " + generateVersion(mcversion) +", bugfixversion = 0;" + sep
+		+ "\tpublic static final String modid = \""+ modid + "\", name = \"" + name + "\", version = majorversion + \".\" + minorversion + \".\" + mcversion + \".\" + bugfixversion;" + sep
 		+ sep
-		+ "@SidedProxy(clientSide = \"com." + author + ".\" + modid + \".proxy.ClientProxy\", serverSide = \"com." + author + ".\" + modid + \".proxy.ServerProxy\")" + sep
-		+ "public static CommonProxy proxy;" + sep
+		+ "\t@SidedProxy(clientSide = \"com." + author + ".\" + modid + \".proxy.ClientProxy\", serverSide = \"com." + author + ".\" + modid + \".proxy.ServerProxy\")" + sep
+		+ "\tpublic static CommonProxy proxy;" + sep
 		+ sep
-		+ "@Instance(modid)" + sep
-		+ "public static Core instance;" + sep
+		+ "\t@Instance(modid)" + sep
+		+ "\tpublic static Core instance;" + sep
 		+ sep
-		+ "@EventHandler" + sep
-		+ "public static void preInit(FMLPreInitializationEvent e)" + sep
-		+ "{" + sep
-		+ "\tproxy.preInit(e);" + sep
-		+ "}" + sep
+		+ "\t@EventHandler" + sep
+		+ "\tpublic static void preInit(FMLPreInitializationEvent e)" + sep
+		+ "\t{" + sep
+		+ "\t\tproxy.preInit(e);" + sep
+		+ "\t}" + sep
 		+ sep
-		+ "@EventHandler" + sep
-		+ "public static void init(FMLInitializationEvent e)" + sep
-		+ "{" + sep
-		+ "\tproxy.init(e);" + sep
-		+ "}" + sep
+		+ "\t@EventHandler" + sep
+		+ "\tpublic static void init(FMLInitializationEvent e)" + sep
+		+ "\t{" + sep
+		+ "\t\tproxy.init(e);" + sep
+		+ "\t}" + sep
 		+ sep
-		+ "@EventHandler" + sep
-		+ "public static void postInit(FMLPostInitializationEvent e)" + sep
-		+ "{" + sep
-		+ "\tproxy.postInit(e);" + sep
-		+ "}" + sep
+		+ "\t@EventHandler" + sep
+		+ "\tpublic static void postInit(FMLPostInitializationEvent e)" + sep
+		+ "\t{" + sep
+		+ "\t\tproxy.postInit(e);" + sep
+		+ "\t}" + sep
 		+ sep	
 		+ "}" + sep;
 	}

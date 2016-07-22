@@ -26,23 +26,23 @@ public class ClientServerProxyTemplate
 		+ sep
 		+ "public class " + (client ? "ClientProxy" : "ServerProxy") + " extends CommonProxy" + sep
 		+ "{" + sep
-		+ "@Override" + sep
-		+ "public void preInit(FMLPreInitializationEvent e)"
-		+ "{" + sep
-		+ "super.preInit(e);" + sep
-		+ "}" + sep
+		+ "\t@Override" + sep
+		+ "\tpublic void preInit(FMLPreInitializationEvent e)" + sep
+		+ "\t{" + sep
+		+ "\t\tsuper.preInit(e);" + sep
+		+ "\t}" + sep
 		+ sep
-		+ "@Override" + sep
-		+ "public void init(FMLInitializationEvent e)" + sep
-		+ "{" + sep
-		+ "super.init(e);" + sep
-		+ "}" + sep
+		+ "\t@Override" + sep
+		+ "\tpublic void init(FMLInitializationEvent e)" + sep
+		+ "\t{" + sep
+		+ "\t\tsuper.init(e);" + sep
+		+ "\t}" + sep
 		+ sep
-		+ "@Override" + sep
-		+ "public void postInit(FMLPostInitializationEvent e)" + sep
-		+ "{"
-		+ "super.postInit(e);" + sep
-		+ "}" + sep
+		+ "\t@Override" + sep
+		+ "\tpublic void postInit(FMLPostInitializationEvent e)" + sep
+		+ "\t{" + sep
+		+ "\t\tsuper.postInit(e);" + sep
+		+ "\t}" + sep
 		+ "}" + sep;
 	}
 }

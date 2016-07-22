@@ -23,20 +23,20 @@ public class CommonProxyTemplate
 			+ sep
 			+ "public class CommonProxy" + sep
 			+ "{" + sep
-			+ "public void preInit(FMLPreInitializationEvent e)" + sep
-			+ "{" + sep
+			+ "\tpublic void preInit(FMLPreInitializationEvent e)" + sep
+			+ "\t{" + sep
 			+ sep
-			+ "}" + sep
+			+ "\t}" + sep
 			+ sep
-			+ "public void init(FMLInitializationEvent e)" + sep
-			+ "{" + sep
+			+ "\tpublic void init(FMLInitializationEvent e)" + sep
+			+ "\t{" + sep
 			+ sep
-			+ "}" + sep
+			+ "\t}" + sep
 			+ sep
-			+ "public void postInit(FMLPostInitializationEvent e)" + sep
-			+ "{" + sep
+			+ "\tpublic void postInit(FMLPostInitializationEvent e)" + sep
+			+ "\t{" + sep
 			+ sep
-			+ "}" + sep
+			+ "\t}" + sep
 			+ "}" + sep;
 	}
 }
