@@ -22,7 +22,6 @@ public class DecompPanel extends JPanel
 {
 	private GridBagConstraints gc;
 	private JLabel file = new JLabel();
-	private String[] versions = new String[] {/*"1.6.4", "1.7.2",*/ "1.7.10", "1.8", "1.8.9", "1.9", "1.9.4", "1.10", "1.10.2"};
 	public DecompPanel(DecompFrame instance)
 	{
 		if(AutoDecompiler.forgeVersions == null)
@@ -33,7 +32,7 @@ public class DecompPanel extends JPanel
 		size.width = 500;
 		setPreferredSize(size);
 		JLabel forgeversion = new JLabel("Forge version"), errors = new JLabel();
-		JComboBox<String> version = new JComboBox<String>(versions);
+		JComboBox<String> version = new JComboBox<String>((String[]) AutoDecompiler.forgeVersions.keySet().toArray());
 		JButton chooseloc = new JButton("Choose location");
 		chooseloc.addActionListener(new ActionListener()
 		{
