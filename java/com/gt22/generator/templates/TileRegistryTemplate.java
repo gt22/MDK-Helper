@@ -35,8 +35,8 @@ public class TileRegistryTemplate extends TemplateBase
 					+ "\t}" + sep
 					+ sep
 					+ "\tpublic static final void init()" + sep
-						+ "\t{" + sep
-					+ sep
+					+ "\t{" + sep
+						+ sep
 					+ "\t}" + sep
 					+ sep
 				+ "}";

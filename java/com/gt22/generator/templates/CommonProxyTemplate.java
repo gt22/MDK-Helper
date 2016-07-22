@@ -41,12 +41,12 @@ public class CommonProxyTemplate extends TemplateBase
 					+ sep
 					+ "\tpublic void init(FMLInitializationEvent e)" + sep
 					+ "\t{" + sep
-					+ sep
+						+ sep
 					+ "\t}" + sep
 					+ sep
 					+ "\tpublic void postInit(FMLPostInitializationEvent e)" + sep
 					+ "\t{" + sep
-					+ sep
+						+ sep
 					+ "\t}" + sep
 				+ "}" + sep;
 	}

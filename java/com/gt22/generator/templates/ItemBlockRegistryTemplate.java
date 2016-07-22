@@ -47,7 +47,7 @@ public class ItemBlockRegistryTemplate extends TemplateBase
 					+ sep)
 					+ "\tpublic static void init()" + sep
 					+ "\t{" + sep
-					+ sep
+						+ sep
 					+ "\t}" + sep
 				+ "}" + sep
 		;
