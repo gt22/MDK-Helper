@@ -24,7 +24,7 @@ public class ItemBlockRegistryTemplate extends TemplateBase
 	{
 		String importmod = mcversion.equals("1.7.10") ? "cpw.mods.fml." : "net.minecraftforge.fml.";
 		String sep  = System.getProperty("line.separator");
-		return 	"package com.gt22.elementalmagic.registry;" + sep
+		return 	"package com." + author + "." + modid + ".registry;" + sep
 				+ sep
 				+ "import net.minecraft." + (item ? "item.Item" : "block.Block") + ";" + sep
 				+ "import net.minecraft.block.material.Material;" + sep
