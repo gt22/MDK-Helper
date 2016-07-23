@@ -26,6 +26,7 @@ public class ItemBlockRegistryTemplate extends TemplateBase
 		String sep  = System.getProperty("line.separator");
 		return 	"package com." + author + "." + modid + ".registry;" + sep
 				+ sep
+				+ "import com." + author  + "." + modid + ".core.Core" + sep
 				+ "import net.minecraft." + (item ? "item.Item" : "block.Block") + ";" + sep
 				+ "import net.minecraft.block.material.Material;" + sep
 				+ "import net.minecraft.item.ItemBlock;" + sep

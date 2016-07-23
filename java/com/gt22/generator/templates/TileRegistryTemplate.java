@@ -24,6 +24,7 @@ public class TileRegistryTemplate extends TemplateBase
 		String sep  = System.getProperty("line.separator");
 		return 	"package com." + author + "." + modid + ".registry;" + sep
 				+ sep
+				+ "import com." + author  + "." + modid + ".core.Core" + sep
 				+ "import net.minecraft.tileentity.TileEntity;" + sep
 				+ "import " + importmod + "common.registry.GameRegistry;" + sep
 				+ sep
