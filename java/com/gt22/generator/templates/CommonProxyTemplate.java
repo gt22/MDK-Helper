@@ -34,9 +34,9 @@ public class CommonProxyTemplate extends TemplateBase
 				+ "{" + sep
 					+ "\tpublic void preInit(FMLPreInitializationEvent e)" + sep
 					+ "\t{" + sep
-						+ "\t\tItemRegistry.init()" + sep
-						+ "\t\tBolckRegistry.init()" + sep
-						+ "\t\tTileRegistry.init()" + sep
+						+ "\t\tItemRegistry.init();" + sep
+						+ "\t\tBlockRegistry.init();" + sep
+						+ "\t\tTileRegistry.init();" + sep
 					+ "\t}" + sep
 					+ sep
 					+ "\tpublic void init(FMLInitializationEvent e)" + sep
