@@ -33,14 +33,15 @@ public class Writer
 		}
 	}
 
-	public static void generateMod(String modid, String name, String author, String mcversion, File moddir) throws IOException
+	public static void generateMod(String modid, String name, String author, String mcversion, File moddir, boolean gitgnore) throws IOException
 	{
 		Packedges pac = generatePackeges(moddir, modid, author);
 		generateCore(pac.core, modid, name, author, mcversion);
 		generateProxies(pac.proxy, modid, author, mcversion);
 		generateResources(moddir, modid);
 		generateRegistry(pac.reg, modid, author, mcversion);
-
+		if(gitgnore)
+			createGitignore(moddir);
 	}
 
 	private static Packedges generatePackeges(File moddir, String modid, String author)
@@ -84,6 +85,17 @@ public class Writer
 		textures.mkdir();
 		File lang = new File(resources, "lang");
 		lang.mkdir();
+	}
+	
+	private static void createGitignore(File modidr) throws IOException
+	{
+		File gitignore = new File(modidr, ".gitignore");
+		FileUtils.initFile(gitignore);
+		FileUtils.addLine(gitignore, "*");
+		FileUtils.addLine(gitignore, "!java/");
+		FileUtils.addLine(gitignore, "!resources/");
+		FileUtils.addLine(gitignore, "!.gitignore");
+		
 	}
 
 }

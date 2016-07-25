@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -31,6 +32,7 @@ public class GeneratorPanel extends JPanel
 		JTextField modidtxt = new JTextField(10), nametxt = new JTextField(10), authortxt = new JTextField(10);
 		JButton add = new JButton("Generate");
 		JLabel errors = new JLabel();
+		JCheckBox gitignore = new JCheckBox("Create .gitignore file");
 		JComboBox<String> versions = new JComboBox<String>(new String[] {"1.7.10", "1.8", "1.8.9", "1.9", "1.9.4", "1.10", "1.10.2"});
 		add.addActionListener(new ActionListener()
 		{
@@ -63,7 +65,7 @@ public class GeneratorPanel extends JPanel
 				{
 					errors.setForeground(new Color(0, 255, 0));
 					errors.setText("Mod generated");
-					Writer.generateMod(modidtxt.getText(), nametxt.getText(), authortxt.getText(), (String) versions.getSelectedItem(), instance.getFile());
+					Writer.generateMod(modidtxt.getText(), nametxt.getText(), authortxt.getText(), (String) versions.getSelectedItem(), instance.getFile(), gitignore.isSelected());
 				}
 				catch (IOException e1)
 				{
@@ -96,6 +98,7 @@ public class GeneratorPanel extends JPanel
 		add(versions, 1, 3);
 		add(file, 1, 4);
 		add(chooseloc, 0, 4);
+		add(gitignore, 0, 5);
 		gc.weighty = 10;
 		add(errors, 0, 10);
 		gc.fill = GridBagConstraints.HORIZONTAL;
