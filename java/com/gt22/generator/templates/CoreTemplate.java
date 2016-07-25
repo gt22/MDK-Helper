@@ -23,6 +23,9 @@ public class CoreTemplate extends TemplateBase
 			+ sep
 			+ sep
 			+ "import com." + author + "." + modid + ".proxy.CommonProxy;" + sep
+			+ "import net.minecraft.creativetab.CreativeTabs;" + sep
+			+ "import net.minecraft.item.Item;" + sep
+			+ "import net.minecraft.init.Items;" + sep
 			+ "import " + importmod + "common.Mod;" + sep
 			+ "import " + importmod + "common.Mod.EventHandler;" + sep
 			+ "import " + importmod + "common.Mod.Instance;" + sep
@@ -42,6 +45,17 @@ public class CoreTemplate extends TemplateBase
 				+ sep
 				+ "\t@Instance(modid)" + sep
 				+ "\tpublic static Core instance;" + sep
+				+ sep
+				+ "\tpublic static CreativeTabs tabWoM = new CreativeTabs(modid)" + sep
+				+ "\t{"
+				+ sep
+				+ "\t\t@Override" + sep
+				+ "\t\tpublic Item getTabIconItem()" + sep
+				+ "\t\t{" + sep
+				+ "\t\t\treturn Items.apple;" + sep
+				+ "\t\t}" + sep
+				+ sep
+				+ "\t};"
 				+ sep
 				+ "\t@EventHandler" + sep
 				+ "\tpublic static void preInit(FMLPreInitializationEvent e)" + sep
