@@ -16,6 +16,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import com.gt22.generator.Constants;
 import com.gt22.generator.core.Writer;
 
 public class GeneratorPanel extends JPanel
@@ -26,14 +27,23 @@ public class GeneratorPanel extends JPanel
 	{
 		setBorder(BorderFactory.createTitledBorder("Gnerator"));
 		Dimension size = getPreferredSize();
-		size.width = 500;
+		size.width = Constants.genwidth;
+		size.height = Constants.genheigth;
 		setPreferredSize(size);
 		JLabel modid = new JLabel("Modid: "), name = new JLabel("Name: "), author = new JLabel("Author: "), mcversion = new JLabel("MC version: ");
 		JTextField modidtxt = new JTextField(10), nametxt = new JTextField(10), authortxt = new JTextField(10);
 		JButton add = new JButton("Generate");
 		JLabel errors = new JLabel();
-		JCheckBox gitignore = new JCheckBox("Create .gitignore file");
+		JCheckBox gitignore = new JCheckBox("Create .gitignore file"), gtcore = new JCheckBox("Use Gt22Core fetures in created mod (1.7.10 only)");
 		JComboBox<String> versions = new JComboBox<String>(new String[] {"1.7.10", "1.8", "1.8.9", "1.9", "1.9.4", "1.10", "1.10.2"});
+		versions.addActionListener(new ActionListener()
+		{	
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				gtcore.setEnabled(versions.getSelectedItem().equals("1.7.10"));
+			}
+		});
 		add.addActionListener(new ActionListener()
 		{
 			
@@ -65,7 +75,7 @@ public class GeneratorPanel extends JPanel
 				{
 					errors.setForeground(new Color(0, 255, 0));
 					errors.setText("Mod generated");
-					Writer.generateMod(modidtxt.getText(), nametxt.getText(), authortxt.getText(), (String) versions.getSelectedItem(), instance.getFile(), gitignore.isSelected());
+					Writer.generateMod(modidtxt.getText(), nametxt.getText(), authortxt.getText(), (String) versions.getSelectedItem(), instance.getFile(), gitignore.isSelected(), gtcore.isSelected());
 				}
 				catch (IOException e1)
 				{
@@ -99,6 +109,7 @@ public class GeneratorPanel extends JPanel
 		add(file, 1, 4);
 		add(chooseloc, 0, 4);
 		add(gitignore, 0, 5);
+		add(gtcore, 0, 6);
 		gc.weighty = 10;
 		add(errors, 0, 10);
 		gc.fill = GridBagConstraints.HORIZONTAL;

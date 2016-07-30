@@ -1,17 +1,18 @@
 package com.gt22.generator.templates;
 
-import java.io.File;
 
 
 public class CoreTemplate extends TemplateBase
 {
 	private String modid, author, name, mcversion;
-	public CoreTemplate(String modid, String author, String name, String mcversion)
+	private boolean gtcore;
+	public CoreTemplate(String modid, String author, String name, String mcversion, boolean gtcore)
 	{
 		this.modid = modid;
 		this.name = name;
 		this.author = author;
 		this.mcversion = mcversion;
+		this.gtcore = gtcore;
 	}
 	
 	@Override
@@ -33,9 +34,10 @@ public class CoreTemplate extends TemplateBase
 			+ "import " + importmod + "common.event.FMLInitializationEvent;" + sep
 			+ "import " + importmod + "common.event.FMLPostInitializationEvent;" + sep
 			+ "import " + importmod + "common.event.FMLPreInitializationEvent;" + sep
+			+ (gtcore ? "import com.gt22.gt22core.interfaces.IMod;" + sep : "")
 			+ sep
 			+ "@Mod(modid = Core.modid, name = Core.modid, version = Core.version)" + sep
-			+ "public class " + getFileName() + sep
+			+ "public class " + getFileName() + (gtcore ? " implements IMod" : "") + sep
 			+ "{" + sep
 				+ "\tpublic static final int majorversion = 1, minorversion = 0, mcversion = " + generateVersion(mcversion) +", bugfixversion = 0;" + sep
 				+ "\tpublic static final String modid = \""+ modid + "\", name = \"" + name + "\", version = majorversion + \".\" + minorversion + \".\" + mcversion + \".\" + bugfixversion;" + sep
@@ -46,16 +48,29 @@ public class CoreTemplate extends TemplateBase
 				+ "\t@Instance(modid)" + sep
 				+ "\tpublic static Core instance;" + sep
 				+ sep
-				+ "\tpublic static CreativeTabs tabWoM = new CreativeTabs(modid)" + sep
+				+ "\tpublic static CreativeTabs tab = new CreativeTabs(modid)" + sep
 				+ "\t{"
 				+ sep
-				+ "\t\t@Override" + sep
-				+ "\t\tpublic Item getTabIconItem()" + sep
-				+ "\t\t{" + sep
-				+ "\t\t\treturn Items.apple;" + sep
-				+ "\t\t}" + sep
-				+ sep
+					+ "\t\t@Override" + sep
+					+ "\t\tpublic Item getTabIconItem()" + sep
+					+ "\t\t{" + sep
+						+ "\t\t\treturn Items.apple;" + sep
+					+ "\t\t}" + sep
+					+ sep
 				+ "\t};"
+				+ (gtcore ? 
+				  "\t@Override" + sep
+				+ "\tpublic CreativeTabs[] getCreativeTabs()" + sep
+				+ "\t{" + sep
+					+ "\t\treturn new CreativeTabs[]" + sep
+					+ "\t\t{ tab };" + sep
+				+ "\t}" + sep
+				+ sep
+				+ "\t@Override" + sep
+				+ "\tpublic String getModid()" + sep
+				+ "\t{" + sep
+					+ "\treturn modid;" + sep
+				+ "\t}" + sep : "")
 				+ sep
 				+ "\t@EventHandler" + sep
 				+ "\tpublic static void preInit(FMLPreInitializationEvent e)" + sep
