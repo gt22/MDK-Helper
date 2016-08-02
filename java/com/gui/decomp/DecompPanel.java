@@ -32,7 +32,7 @@ public class DecompPanel extends JPanel
 		size.width = 500;
 		setPreferredSize(size);
 		JLabel forgeversion = new JLabel("Forge version"), errors = new JLabel();
-		JComboBox<String> version = new JComboBox<String>((String[]) AutoDecompiler.forgeVersions.keySet().toArray());
+		JComboBox<String> version = new JComboBox<String>(AutoDecompiler.forgeVersions.keySet().toArray(new String[AutoDecompiler.forgeVersions.size()]));
 		JButton chooseloc = new JButton("Choose location");
 		chooseloc.addActionListener(new ActionListener()
 		{
