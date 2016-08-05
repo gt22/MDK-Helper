@@ -2,13 +2,14 @@ package com.gt22.generator.core;
 
 import java.io.File;
 import java.io.IOException;
-import com.gt22.generator.templates.BlockBaseTemplate;
-import com.gt22.generator.templates.ClientServerProxyTemplate;
-import com.gt22.generator.templates.CommonProxyTemplate;
 import com.gt22.generator.templates.CoreTemplate;
-import com.gt22.generator.templates.ItemBaseTemplate;
-import com.gt22.generator.templates.ItemBlockRegistryTemplate;
-import com.gt22.generator.templates.TileRegistryTemplate;
+import com.gt22.generator.templates.bases.BlockBaseTemplate;
+import com.gt22.generator.templates.bases.ItemBaseTemplate;
+import com.gt22.generator.templates.proxy.ClientServerProxyTemplate;
+import com.gt22.generator.templates.proxy.CommonProxyTemplate;
+import com.gt22.generator.templates.registry.ItemBlockRegistryTemplate;
+import com.gt22.generator.templates.registry.ModelRegistryTemplate;
+import com.gt22.generator.templates.registry.TileRegistryTemplate;
 import com.gt22.generator.utils.FileUtils;
 
 public class Writer
@@ -36,7 +37,7 @@ public class Writer
 		generateCore(pac.core, modid, name, author, mcversion, gtcore);
 		generateProxies(pac.proxy, modid, author, mcversion);
 		generateResources(moddir, modid);
-		generateRegistry(pac.reg, modid, author, mcversion);
+		generateRegistry(pac.reg, modid, author, mcversion, gtcore);
 		if(gitgnore)
 			createGitignore(moddir);
 		if(gtcore)
@@ -76,11 +77,15 @@ public class Writer
 	}
 	
 
-	private static void generateRegistry(File regpackege, String modid, String author, String mcversion) throws IOException
+	private static void generateRegistry(File regpackege, String modid, String author, String mcversion, boolean gtcore) throws IOException
 	{
-		new ItemBlockRegistryTemplate(modid, author, mcversion, true).write(regpackege);
-		new ItemBlockRegistryTemplate(modid, author, mcversion, false).write(regpackege);
+		new ItemBlockRegistryTemplate(modid, author, mcversion, true, gtcore).write(regpackege);
+		new ItemBlockRegistryTemplate(modid, author, mcversion, false, gtcore).write(regpackege);
 		new TileRegistryTemplate(author, modid, mcversion).write(regpackege);
+		if(!mcversion.equals("1.7.10") && !gtcore)
+		{
+			new ModelRegistryTemplate(author, modid).write(regpackege);
+		}
 	}
 
 	private static void generateResources(File moddir, String modid)

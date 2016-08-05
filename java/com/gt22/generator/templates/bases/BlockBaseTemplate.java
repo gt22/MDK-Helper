@@ -1,4 +1,6 @@
-package com.gt22.generator.templates;
+package com.gt22.generator.templates.bases;
+
+import com.gt22.generator.templates.TemplateBase;
 
 
 public class BlockBaseTemplate extends TemplateBase

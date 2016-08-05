@@ -1,4 +1,6 @@
-package com.gt22.generator.templates;
+package com.gt22.generator.templates.registry;
+
+import com.gt22.generator.templates.TemplateBase;
 
 public class TileRegistryTemplate extends TemplateBase
 {

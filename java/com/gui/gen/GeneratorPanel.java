@@ -34,14 +34,14 @@ public class GeneratorPanel extends JPanel
 		JTextField modidtxt = new JTextField(10), nametxt = new JTextField(10), authortxt = new JTextField(10);
 		JButton add = new JButton("Generate");
 		JLabel errors = new JLabel();
-		JCheckBox gitignore = new JCheckBox("Create .gitignore file"), gtcore = new JCheckBox("Use Gt22Core fetures in created mod (1.7.10 only)");
+		JCheckBox gitignore = new JCheckBox("Create .gitignore file"), gtcore = new JCheckBox("Use Gt22Core fetures in created mod (1.7.10 or 1.8.9 only)");
 		JComboBox<String> versions = new JComboBox<String>(new String[] {"1.7.10", "1.8", "1.8.9", "1.9", "1.9.4", "1.10", "1.10.2"});
 		versions.addActionListener(new ActionListener()
 		{	
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				gtcore.setEnabled(versions.getSelectedItem().equals("1.7.10"));
+				gtcore.setEnabled(versions.getSelectedItem().equals("1.7.10") || versions.getSelectedItem().equals("1.8.9"));
 			}
 		});
 		add.addActionListener(new ActionListener()
