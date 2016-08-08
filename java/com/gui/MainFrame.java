@@ -27,23 +27,9 @@ public class MainFrame extends JFrame
 	{
 		Container c = getContentPane();
 		JButton gen = new JButton("Generate mod");
-		gen.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-				openGen();
-			}
-		});
+		gen.addActionListener((e) -> openGen());
 		JButton decomp = new JButton("Setup MDK");
-		decomp.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-				openDecomp();
-			}
-		});
+		decomp.addActionListener((e) -> openDecomp());
 		c.add(gen, BorderLayout.NORTH);
 		c.add(decomp, BorderLayout.SOUTH);
 	}

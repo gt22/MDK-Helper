@@ -36,63 +36,43 @@ public class GeneratorPanel extends JPanel
 		JLabel errors = new JLabel();
 		JCheckBox gitignore = new JCheckBox("Create .gitignore file"), gtcore = new JCheckBox("Use Gt22Core fetures in created mod (1.7.10 or 1.8.9 only)");
 		JComboBox<String> versions = new JComboBox<String>(new String[] {"1.7.10", "1.8", "1.8.9", "1.9", "1.9.4", "1.10", "1.10.2"});
-		versions.addActionListener(new ActionListener()
-		{	
-			@Override
-			public void actionPerformed(ActionEvent e)
+		versions.addActionListener((e) -> gtcore.setEnabled(versions.getSelectedItem().equals("1.7.10") || versions.getSelectedItem().equals("1.8.9")));
+		add.addActionListener((e) -> {
+			errors.setForeground(new Color(255, 0, 0));
+			if(nullorempty(modidtxt.getText()))
 			{
-				gtcore.setEnabled(versions.getSelectedItem().equals("1.7.10") || versions.getSelectedItem().equals("1.8.9"));
+				errors.setText("Enter modid");
+				return;
 			}
-		});
-		add.addActionListener(new ActionListener()
-		{
-			
-			@Override
-			public void actionPerformed(ActionEvent e)
+			if(nullorempty(nametxt.getText()))
 			{
-				errors.setForeground(new Color(255, 0, 0));
-				if(nullorempty(modidtxt.getText()))
-				{
-					errors.setText("Enter modid");
-					return;
-				}
-				if(nullorempty(nametxt.getText()))
-				{
-					errors.setText("Enter name");
-					return;
-				}
-				if(nullorempty(authortxt.getText()))
-				{
-					errors.setText("Enter author");
-					return;
-				}
-				if(instance.getFile() == null)
-				{
-					errors.setText("Select directory");
-					return;
-				}
-				try
-				{
-					errors.setForeground(new Color(0, 255, 0));
-					errors.setText("Mod generated");
-					Writer.generateMod(modidtxt.getText(), nametxt.getText(), authortxt.getText(), (String) versions.getSelectedItem(), instance.getFile(), gitignore.isSelected(), gtcore.isSelected());
-				}
-				catch (IOException e1)
-				{
-					errors.setText("Something went really wrong");
-					e1.printStackTrace();
-				}
+				errors.setText("Enter name");
+				return;
+			}
+			if(nullorempty(authortxt.getText()))
+			{
+				errors.setText("Enter author");
+				return;
+			}
+			if(instance.getFile() == null)
+			{
+				errors.setText("Select directory");
+				return;
+			}
+			try
+			{
+				errors.setForeground(new Color(0, 255, 0));
+				errors.setText("Mod generated");
+				Writer.generateMod(modidtxt.getText(), nametxt.getText(), authortxt.getText(), (String) versions.getSelectedItem(), instance.getFile(), gitignore.isSelected(), gtcore.isSelected());
+			}
+			catch (IOException e1)
+			{
+				errors.setText("Something went really wrong");
+				e1.printStackTrace();
 			}
 		});
 		JButton chooseloc = new JButton("Choose location");
-		chooseloc.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-				instance.open();
-			}
-		});
+		chooseloc.addActionListener((e) -> instance.open());
 		setLayout(new GridBagLayout());
 		gc = new GridBagConstraints();
 		gc.anchor = GridBagConstraints.WEST;

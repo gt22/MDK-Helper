@@ -19,13 +19,6 @@ public class Gui
 		{
 			e.printStackTrace();
 		}
-		SwingUtilities.invokeLater(new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				new MainFrame("MDK helper");
-			}
-		});
+		SwingUtilities.invokeLater(() -> new MainFrame("MDK Helper"));
 	}
 }

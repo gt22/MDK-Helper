@@ -36,17 +36,12 @@ public class GenFrame extends JFrame
 		genpanel = new GeneratorPanel(this);
 		chooser  = new JFileChooser(new File("."));
 		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-		chooser.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent e)
+		chooser.addActionListener((e) -> {
+			if(e.getActionCommand().equals("ApproveSelection"))
 			{
-				if(e.getActionCommand().equals("ApproveSelection"))
-				{
-					genpanel.setFile(chooser.getSelectedFile());
-				}
+				genpanel.setFile(chooser.getSelectedFile());
 			}
-		});
+		});;
 		setLayout(new BorderLayout());
 		initComponents();
 		setVisible(true);

@@ -34,38 +34,26 @@ public class DecompPanel extends JPanel
 		JLabel forgeversion = new JLabel("Forge version"), errors = new JLabel();
 		JComboBox<String> version = new JComboBox<String>(AutoDecompiler.forgeVersions.keySet().toArray(new String[AutoDecompiler.forgeVersions.size()]));
 		JButton chooseloc = new JButton("Choose location");
-		chooseloc.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-				instance.open();
-			}
-		});
+		chooseloc.addActionListener((e) -> instance.open());
 		JCheckBox eclipse = new JCheckBox("Setup eclipse workspace"), idea = new JCheckBox("Setup IDEA workspace"); 
 		JButton decompile = new JButton("Decompile");
-		decompile.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent e)
+		decompile.addActionListener((e) -> {
+			errors.setForeground(new Color(255, 0, 0));
+			File installdir = instance.getFile();
+			if(installdir == null)
 			{
-				errors.setForeground(new Color(255, 0, 0));
-				File installdir = instance.getFile();
-				if(installdir == null)
-				{
-					errors.setText("Select directory");
-				}
-				if(installdir.listFiles() != null && installdir.listFiles().length > 0)
-				{
-					errors.setText("Directory must be empty");
-				}
-				installdir.mkdirs();
-				AutoDecompiler.setForgeVersion((String) version.getSelectedItem());
-				AutoDecompiler.setWorkDir(installdir.getAbsolutePath());
-				AutoDecompiler.setEclipse(eclipse.isSelected());
-				AutoDecompiler.setIdea(idea.isSelected());
-				AutoDecompiler.decompile();
+				errors.setText("Select directory");
 			}
+			if(installdir.listFiles() != null && installdir.listFiles().length > 0)
+			{
+				errors.setText("Directory must be empty");
+			}
+			installdir.mkdirs();
+			AutoDecompiler.setForgeVersion((String) version.getSelectedItem());
+			AutoDecompiler.setWorkDir(installdir.getAbsolutePath());
+			AutoDecompiler.setEclipse(eclipse.isSelected());
+			AutoDecompiler.setIdea(idea.isSelected());
+			AutoDecompiler.decompile();
 		});
 		setLayout(new GridBagLayout());
 		gc = new GridBagConstraints();

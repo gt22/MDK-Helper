@@ -31,15 +31,10 @@ public class DecompFrame extends JFrame
 		panel = new DecompPanel(this);
 		chooser = new JFileChooser(new File("."));
 		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-		chooser.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent e)
+		chooser.addActionListener((e) -> {
+			if(e.getActionCommand().equals("ApproveSelection"))
 			{
-				if(e.getActionCommand().equals("ApproveSelection"))
-				{
-					panel.setFile(chooser.getSelectedFile());
-				}
+				panel.setFile(chooser.getSelectedFile());
 			}
 		});
 		setSize(Constants.decompwidth, Constants.decompheight);
